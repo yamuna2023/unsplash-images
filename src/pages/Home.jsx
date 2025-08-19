@@ -58,7 +58,7 @@ export default function Home() {
         <>
           <ImageGrid images={images} />
 
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="d-flex gap-2 my-3 flex-wrap">
             <button
               
               onClick={handlePrev}
