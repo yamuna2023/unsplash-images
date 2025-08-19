@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 export default function SearchBar({ initialValue = "", onSearch }) {
@@ -6,7 +7,7 @@ export default function SearchBar({ initialValue = "", onSearch }) {
   const submit = (e) => {
     e.preventDefault();
     const t = (term || "").trim();
-    if (!t) return;
+
     onSearch(t);
   };
 
@@ -25,3 +26,4 @@ export default function SearchBar({ initialValue = "", onSearch }) {
     </form>
   );
 }
+

@@ -1,3 +1,6 @@
+
+
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetchImages from "../hooks/useFetchImages";
@@ -27,25 +30,40 @@ export default function Results() {
     <div className="container">
       <h1 className="title">Results</h1>
 
-      <SearchBar initialValue={q} onSearch={(term) => navigate(`/search?q=${encodeURIComponent(term)}&page=1`)} />
+      <SearchBar
+        initialValue={q}
+        onSearch={(term) => navigate(`/search?q=${encodeURIComponent(term)}&page=1`)}
+      />
 
       {loading && <Loading />}
 
       {error && <p className="error-msg">{error}</p>}
 
-      {!loading && !error && images.length === 0 && <p>No images found.</p>}
+      {!loading && !error && images.length === 0 && (
+        <p className="text-danger">No images found.</p>
+      )}
 
-      <ImageGrid images={images} />
+      {images.length > 0 && <ImageGrid images={images} />}
 
       {!loading && images.length > 0 && (
         <div className="d-flex gap-2 my-3 flex-wrap">
-          <button className="btn btn-outline-primary" onClick={() => goToPage(Math.max(1, page - 1))} disabled={page <= 1}>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => goToPage(Math.max(1, page - 1))}
+            disabled={page <= 1}
+          >
             Previous
           </button>
-          <button className="btn btn-outline-primary" onClick={() => goToPage(Math.min(totalPages || page + 1, page + 1))} disabled={page >= totalPages || totalPages === 0}>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => goToPage(Math.min(totalPages || page + 1, page + 1))}
+            disabled={page >= totalPages || totalPages === 0}
+          >
             Next
           </button>
-          <div className="align-self-center ms-2">Page {page} of {totalPages || "?"}</div>
+          <div className="align-self-center ms-2">
+            Page {page} of {totalPages || "?"}
+          </div>
         </div>
       )}
     </div>
