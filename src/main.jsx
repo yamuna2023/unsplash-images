@@ -1,13 +1,18 @@
 
-
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import { UnsplashProvider } from "./context/UnsplashContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.css"; // optional if you want custom classes
+import "./style.css";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <UnsplashProvider>
+        <App />
+      </UnsplashProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
